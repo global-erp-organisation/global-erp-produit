@@ -1,6 +1,7 @@
 package com.camlait.global.erp.produit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,13 +22,13 @@ public class CategorieProduitController {
         return categorie;
     }
     
-    @RequestMapping(value = "/supprimer", method = RequestMethod.GET)
-    public void supprimerCategorie(Long categorieId) {
+    @RequestMapping(value = "/supprimer/{categorieId}", method = RequestMethod.GET)
+    public void supprimerCategorie(@PathVariable Long categorieId) {
         service.supprimerCategorie(categorieId);
     }
     
-    @RequestMapping(value = "/trouver", method = RequestMethod.GET)
-    public CategorieProduit trouverCategorie(Long categorieId) {
+    @RequestMapping(value = "/trouver/{categorieId}", method = RequestMethod.GET)
+    public CategorieProduit trouverCategorie(@PathVariable Long categorieId) {
         return service.trouverCategorie(categorieId);
     }
 }
