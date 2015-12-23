@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.camlait.global.erp.dao.produit.CategorieProduitDao;
 import com.camlait.global.erp.domain.produit.CategorieProduit;
+import com.camlait.global.erp.produit.exception.GlobalProduitException;
 
 public class CategorieProduitService implements ICategorieProduitService {
     
@@ -35,15 +36,17 @@ public class CategorieProduitService implements ICategorieProduitService {
     
     @Override
     public void supprimerCategorie(Long categorieId) {
-        CategorieProduit c = trouverCategorie(categorieId);
-        if (c != null) {
-            categorieDao.delete(c);
-        }
+        categorieDao.delete(trouverCategorie(categorieId));
     }
     
     @Override
     public CategorieProduit trouverCategorie(Long categorieId) {
-        return categorieDao.findOne(categorieId);
+        CategorieProduit c = categorieDao.findOne(categorieId);
+        if (c != null) {
+            return c;
+        } else {
+            throw new GlobalProduitException("La categorie de produit ayant l'identifiant " + categorieId + " n'existe pas. ");
+        }
     }
     
     @Override
