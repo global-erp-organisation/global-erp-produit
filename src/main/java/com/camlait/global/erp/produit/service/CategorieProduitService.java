@@ -1,6 +1,9 @@
 package com.camlait.global.erp.produit.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.camlait.global.erp.dao.produit.CategorieProduitDao;
 import com.camlait.global.erp.domain.produit.CategorieProduit;
@@ -38,5 +41,10 @@ public class CategorieProduitService implements ICategorieProduitService {
     public CategorieProduit trouverCategorie(Long categorieId) {
         return categorieDao.findOne(categorieId);
     }
+
+	@Override
+	public Page<CategorieProduit> listerCategorieProduit(Pageable p) {		
+		return categorieDao.findAll(p);
+	}
     
 }
