@@ -1,5 +1,6 @@
 package com.camlait.global.erp.produit.service;
 
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,12 +20,15 @@ public class CategorieProduitService implements ICategorieProduitService {
     
     @Override
     public CategorieProduit ajouterCategorie(CategorieProduit categorie) {
+        categorie.setDateDeCreation(new Date());
+        categorie.setDerniereMiseAJour(new Date());
         categorieDao.save(categorie);
         return categorie;
     }
     
     @Override
     public CategorieProduit modifierCategorie(CategorieProduit categorie) {
+        categorie.setDerniereMiseAJour(new Date());
         categorieDao.saveAndFlush(categorie);
         return categorie;
     }
@@ -41,10 +45,10 @@ public class CategorieProduitService implements ICategorieProduitService {
     public CategorieProduit trouverCategorie(Long categorieId) {
         return categorieDao.findOne(categorieId);
     }
-
-	@Override
-	public Page<CategorieProduit> listerCategorieProduit(Pageable p) {		
-		return categorieDao.findAll(p);
-	}
+    
+    @Override
+    public Page<CategorieProduit> listerCategorieProduit(Pageable p) {
+        return categorieDao.findAll(p);
+    }
     
 }

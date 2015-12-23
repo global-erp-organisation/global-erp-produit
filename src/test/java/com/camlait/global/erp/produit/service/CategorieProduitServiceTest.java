@@ -7,7 +7,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.joda.time.DateTime;
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,8 +32,8 @@ public class CategorieProduitServiceTest {
         categorie.setId(1L);
         categorie.setCodeCategorieProduit("PL");
         categorie.setCategorieTaxable(true);
-        categorie.setDateDeCreation(new DateTime());
-        categorie.setDerniereMiseAJour(new DateTime());
+        categorie.setDateDeCreation(new Date());
+        categorie.setDerniereMiseAJour(new Date());
         categorie.setDescriptionCategorie("Produits laitiers");
         categorie.setPortee(Portee.DETAIL);
     }
