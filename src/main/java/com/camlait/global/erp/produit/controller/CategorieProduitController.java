@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.camlait.global.erp.domain.produit.CategorieProduit;
-import com.camlait.global.erp.produit.service.CategorieProduitService;
+import com.camlait.global.erp.produit.service.ICategorieProduitService;
 
 @RestController
 @RequestMapping(value = "/categorie")
 public class CategorieProduitController {
 
 	@Autowired
-	private CategorieProduitService service;
+	private ICategorieProduitService service;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public CategorieProduit ajouterCategorie(CategorieProduit categorie) {
