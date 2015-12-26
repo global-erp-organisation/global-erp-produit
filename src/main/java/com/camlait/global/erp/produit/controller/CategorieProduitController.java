@@ -10,36 +10,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.camlait.global.erp.domain.produit.CategorieProduit;
-import com.camlait.global.erp.produit.service.ICategorieProduitService;
+import com.camlait.global.erp.service.produit.IProduitService;
 
 @RestController
 @RequestMapping(value = "/categorie")
 public class CategorieProduitController {
 
 	@Autowired
-	private ICategorieProduitService service;
+	private IProduitService service;
 
 	@RequestMapping(value = "/add/{categorieParentId}", method = RequestMethod.POST)
 	public CategorieProduit ajouterCategorie(@RequestBody CategorieProduit categorie,
 			@PathVariable Long categorieParentId) {
-		service.ajouterCategorie(categorie, categorieParentId);
+		if (categorieParentId != null) {
+			categorie.setCategorieParent(service.trouverCategorieProduit(categorieParentId));
+		}
+		service.ajouterCategorieProduit(categorie);
 		return categorie;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public CategorieProduit ajouterCategorie(@RequestBody CategorieProduit categorie) {
-		service.ajouterCategorie(categorie, null);
+		service.ajouterCategorieProduit(categorie);
 		return categorie;
 	}
 
 	@RequestMapping(value = "/supprimer/{categorieId}", method = RequestMethod.GET)
 	public void supprimerCategorie(@PathVariable Long categorieId) {
-		service.supprimerCategorie(categorieId);
+		service.supprimerCategorieProduit(categorieId);
 	}
 
 	@RequestMapping(value = "/trouver/{categorieId}", method = RequestMethod.GET)
 	public CategorieProduit trouverCategorie(@PathVariable Long categorieId) {
-		return service.trouverCategorie(categorieId);
+		return service.trouverCategorieProduit(categorieId);
 	}
 
 	@RequestMapping(value = "/lister/{page}/{limit}")

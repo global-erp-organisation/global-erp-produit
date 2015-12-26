@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.camlait.global.erp.domain.produit.Produit;
-import com.camlait.global.erp.produit.service.IProduitService;
 
 @RestController
 @RequestMapping(value = "/produit")
 public class ProduitController {
 
 	@Autowired
-	private IProduitService service;
+	private com.camlait.global.erp.service.produit.IProduitService service;
 
 	@RequestMapping(value = "/add/{categorieId}", method = RequestMethod.POST)
-	public Produit ajouterProduit(@RequestBody Produit produit,@PathVariable Long categorieId) {
-		service.ajouterProduit(produit,categorieId);
+	public Produit ajouterProduit(@RequestBody Produit produit, @PathVariable Long categorieId) {
+		produit.setCategorie(service.trouverCategorieProduit(categorieId));
+		service.ajouterProduit(produit);
 		return produit;
 	}
 
