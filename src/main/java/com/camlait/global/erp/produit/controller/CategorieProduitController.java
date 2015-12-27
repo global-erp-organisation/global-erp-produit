@@ -45,8 +45,14 @@ public class CategorieProduitController {
 		return service.trouverCategorieProduit(categorieId);
 	}
 
-	@RequestMapping(value = "/lister/{page}/{limit}")
+	@RequestMapping(value = "/lister/{page}/{limit}", method=RequestMethod.GET)
 	public Page<CategorieProduit> listerCategorie(@PathVariable int page, @PathVariable int limit) {
 		return service.listerCategorieProduit(new PageRequest(page, limit));
 	}
+	
+	@RequestMapping(value = "/kw/{motCle}{page}/{limit}", method=RequestMethod.GET)
+	public Page<CategorieProduit> listerCategorie(@PathVariable String motCle,@PathVariable int page, @PathVariable int limit) {
+		System.out.println(motCle);
+		return service.listerCategorieProduit(motCle, new PageRequest(page, limit));
+	}	
 }
