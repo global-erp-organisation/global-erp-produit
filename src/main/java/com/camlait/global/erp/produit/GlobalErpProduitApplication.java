@@ -7,20 +7,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Service;
 
 import com.camlait.global.erp.domain.config.GlobalAppConstants;
 import com.camlait.global.erp.domain.enumeration.Portee;
 import com.camlait.global.erp.domain.produit.CategorieProduit;
 import com.camlait.global.erp.domain.produit.Produit;
+import com.camlait.global.erp.service.produit.IProduitService;
 
 @SpringBootApplication
-@EntityScan(GlobalAppConstants.PRODUCT_DOMAIN_BASE_PACKAGE)
-@EnableJpaRepositories(GlobalAppConstants.PRODUCT_DAO_BASE_PACKAGE)
+@EntityScan(GlobalAppConstants.DOMAIN_BASE_PACKAGE)
+@EnableJpaRepositories(GlobalAppConstants.DAO_BASE_PACKAGE)
 public class GlobalErpProduitApplication {
 
 	@Autowired
-	com.camlait.global.erp.service.produit.IProduitService produitService;
+	IProduitService produitService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GlobalErpProduitApplication.class, args);
