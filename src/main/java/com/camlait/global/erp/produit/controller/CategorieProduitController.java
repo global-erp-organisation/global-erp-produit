@@ -1,5 +1,7 @@
 package com.camlait.global.erp.produit.controller;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +25,7 @@ public class CategorieProduitController {
 	public CategorieProduit ajouterCategorie(@RequestBody CategorieProduit categorie,
 			@PathVariable Long categorieParentId) {
 		if (categorieParentId != null) {
-			categorie.setCategorieParent(service.trouverCategorieProduit(categorieParentId));
+			categorie.setCategorieParent(service.obtenirCategorieProduit(categorieParentId));
 		}
 		service.ajouterCategorieProduit(categorie);
 		return categorie;
@@ -42,17 +44,17 @@ public class CategorieProduitController {
 
 	@RequestMapping(value = "/trouver/{categorieId}", method = RequestMethod.GET)
 	public CategorieProduit trouverCategorie(@PathVariable Long categorieId) {
-		return service.trouverCategorieProduit(categorieId);
+		return service.obtenirCategorieProduit(categorieId);
 	}
 
-	@RequestMapping(value = "/lister/{page}/{limit}", method=RequestMethod.GET)
+	@RequestMapping(value = "/lister/{page}/{limit}", method = RequestMethod.GET)
 	public Page<CategorieProduit> listerCategorie(@PathVariable int page, @PathVariable int limit) {
 		return service.listerCategorieProduit(new PageRequest(page, limit));
 	}
-	
-	@RequestMapping(value = "/kw/{motCle}{page}/{limit}", method=RequestMethod.GET)
-	public Page<CategorieProduit> listerCategorie(@PathVariable String motCle,@PathVariable int page, @PathVariable int limit) {
-		System.out.println(motCle);
-		return service.listerCategorieProduit(motCle, new PageRequest(page, limit));
-	}	
+
+	@RequestMapping(value = "/{motCle}", method = RequestMethod.GET)
+	public Collection<CategorieProduit> listerCategorie(@PathVariable String motCle, @PathVariable int page,
+			@PathVariable int limit) {
+		return service.listerCategorieProduit(motCle);
+	}
 }

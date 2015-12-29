@@ -20,7 +20,7 @@ public class ProduitController {
 
 	@RequestMapping(value = "/add/{categorieId}", method = RequestMethod.POST)
 	public Produit ajouterProduit(@RequestBody Produit produit, @PathVariable Long categorieId) {
-		produit.setCategorie(service.trouverCategorieProduit(categorieId));
+		produit.setCategorie(service.obtenirCategorieProduit(categorieId));
 		service.ajouterProduit(produit);
 		return produit;
 	}
@@ -32,7 +32,7 @@ public class ProduitController {
 
 	@RequestMapping(value = "/trouver/{produitId}", method = RequestMethod.GET)
 	public Produit trouverCategorie(@PathVariable Long produitId) {
-		return service.trouverProduit(produitId);
+		return service.obtenirProduit(produitId);
 	}
 
 	@RequestMapping(value = "/lister/{page}/{limit}")
