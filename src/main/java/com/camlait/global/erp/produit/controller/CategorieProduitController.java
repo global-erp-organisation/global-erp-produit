@@ -48,8 +48,8 @@ public class CategorieProduitController {
 	}
 
 	@RequestMapping(value = "/lister/{page}/{limit}", method = RequestMethod.GET)
-	public Page<CategorieProduit> listerCategorie(@PathVariable int page, @PathVariable int limit) {
-		return service.listerCategorieProduit(new PageRequest(page, limit));
+	public Collection<CategorieProduit> listerCategorie(@PathVariable int page, @PathVariable int limit) {
+		return service.listerCategorieProduit();
 	}
 
 	@RequestMapping(value = "/{motCle}", method = RequestMethod.GET)
