@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.camlait.global.erp.domain.bmq.Bmq;
 import com.camlait.global.erp.domain.config.GlobalAppConstants;
 import com.camlait.global.erp.domain.entrepot.Entrepot;
-import com.camlait.global.erp.domain.entrepot.Magasin;
 import com.camlait.global.erp.domain.entrepot.MagasinFixe;
 import com.camlait.global.erp.domain.entrepot.MagasinMobile;
 import com.camlait.global.erp.domain.organisation.Centre;
@@ -123,9 +122,5 @@ public class GlobalErpProduitApplication {
         b.setVendeur(v);
         bmqService.ajouterBmq(b);
         
-        System.out.println(partenaireService.obtanirPartenaire(Vendeur.class, 2L).toString());
-        System.out.println(inventaireService.obtenirEntrepot("EN1"));
-        System.out.println(inventaireService.obtenirMagasin(MagasinMobile.class, "MM1"));
-        System.out.println(inventaireService.obtenirMagasin(Magasin.class, "MF1"));
-    }
+      }
 }
