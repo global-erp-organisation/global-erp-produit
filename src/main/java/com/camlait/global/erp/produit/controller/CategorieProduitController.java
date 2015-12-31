@@ -3,8 +3,6 @@ package com.camlait.global.erp.produit.controller;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,14 +45,13 @@ public class CategorieProduitController {
 		return service.obtenirCategorieProduit(categorieId);
 	}
 
-	@RequestMapping(value = "/lister/{page}/{limit}", method = RequestMethod.GET)
-	public Collection<CategorieProduit> listerCategorie(@PathVariable int page, @PathVariable int limit) {
+	@RequestMapping(value = "/lister", method = RequestMethod.GET)
+	public Collection<CategorieProduit> listerCategorie() {
 		return service.listerCategorieProduit();
 	}
 
 	@RequestMapping(value = "/{motCle}", method = RequestMethod.GET)
-	public Collection<CategorieProduit> listerCategorie(@PathVariable String motCle, @PathVariable int page,
-			@PathVariable int limit) {
+	public Collection<CategorieProduit> listerCategorie(@PathVariable String motCle) {
 		return service.listerCategorieProduit(motCle);
 	}
 }
