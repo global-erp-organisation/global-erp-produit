@@ -14,12 +14,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.camlait.global.erp.domain.bmq.Bmq;
 import com.camlait.global.erp.domain.config.GlobalAppConstants;
 import com.camlait.global.erp.domain.entrepot.Entrepot;
+import com.camlait.global.erp.domain.entrepot.Magasin;
 import com.camlait.global.erp.domain.entrepot.MagasinFixe;
 import com.camlait.global.erp.domain.entrepot.MagasinMobile;
 import com.camlait.global.erp.domain.organisation.Centre;
 import com.camlait.global.erp.domain.organisation.Region;
 import com.camlait.global.erp.domain.organisation.Secteur;
 import com.camlait.global.erp.domain.organisation.Zone;
+import com.camlait.global.erp.domain.partenaire.ClientAmarge;
+import com.camlait.global.erp.domain.partenaire.ClientComptant;
 import com.camlait.global.erp.domain.partenaire.Employe;
 import com.camlait.global.erp.domain.partenaire.Vendeur;
 import com.camlait.global.erp.service.bmq.IBmqService;
@@ -51,7 +54,7 @@ public class GlobalErpProduitApplication {
 	@PostConstruct
     public void test() {
         
-        Centre c = new Centre();
+       Centre c = new Centre();
         c.setDescriptionLocal("Centre de bassa");
         localisationService.ajouterLocalisation(c);
         Region r = new Region();
@@ -76,14 +79,26 @@ public class GlobalErpProduitApplication {
         partenaireService.ajouterPartenaire(em);
         
         Vendeur v = new Vendeur();
-        //v.setCentre(c);
+        v.setCentre(c);
         v.setMatricule("EMP2300");
         v.setNom("Fosto");
         v.setPrenom("Jean Bonbon");
         v.setTelephone("514-354-0791");
-        //v.setZoneDeVente(z);
+        v.setZoneDeVente(z);
         partenaireService.ajouterPartenaire(v);
         
+        ClientComptant cc = new ClientComptant();
+        cc.setCentre(c);
+        cc.setZone(z);
+        cc.setDescription("Client comptant");
+        partenaireService.ajouterPartenaire(cc);
+        
+        ClientAmarge cm = new ClientAmarge();
+        cm.setCentre(c);
+        cm.setZone(z);
+        cm.setDescription("Boulangerie patisserie Zepol");
+        partenaireService.ajouterPartenaire(cm);
+
         Entrepot e = new Entrepot();
         e.setCentre(c);
         e.setDescriptionEntrepot("Entrepot de douala");
@@ -107,5 +122,10 @@ public class GlobalErpProduitApplication {
         b.setResponsable(em);
         b.setVendeur(v);
         bmqService.ajouterBmq(b);
+        
+        System.out.println(partenaireService.obtanirPartenaire(Vendeur.class, 2L).toString());
+        System.out.println(inventaireService.obtenirEntrepot("EN1"));
+        System.out.println(inventaireService.obtenirMagasin(MagasinMobile.class, "MM1"));
+        System.out.println(inventaireService.obtenirMagasin(Magasin.class, "MF1"));
     }
 }
