@@ -53,7 +53,7 @@ public class GlobalErpProduitApplication {
 	@PostConstruct
     public void test() {
         
-       Centre c = new Centre();
+       /*Centre c = new Centre();
         c.setDescriptionLocal("Centre de bassa");
         localisationService.ajouterLocalisation(c);
         Region r = new Region();
@@ -120,7 +120,7 @@ public class GlobalErpProduitApplication {
         b.setMagasin(mm);
         b.setResponsable(em);
         b.setVendeur(v);
-        bmqService.ajouterBmq(b);
+        bmqService.ajouterBmq(b);*/
         
       }
 }
