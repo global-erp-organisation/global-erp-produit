@@ -15,43 +15,43 @@ import com.camlait.global.erp.service.produit.IProduitService;
 @RestController
 @RequestMapping(value = "/categorie")
 public class CategorieProduitController {
-
-	@Autowired
-	private IProduitService service;
-
-	@RequestMapping(value = "/add/{categorieParentId}", method = RequestMethod.POST)
-	public CategorieProduit ajouterCategorie(@RequestBody CategorieProduit categorie,
-			@PathVariable Long categorieParentId) {
-		if (categorieParentId != null) {
-			categorie.setCategorieParent(service.obtenirCategorieProduit(categorieParentId));
-		}
-		service.ajouterCategorieProduit(categorie);
-		return categorie;
-	}
-
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public CategorieProduit ajouterCategorie(@RequestBody CategorieProduit categorie) {
-		service.ajouterCategorieProduit(categorie);
-		return categorie;
-	}
-
-	@RequestMapping(value = "/supprimer/{categorieId}", method = RequestMethod.GET)
-	public void supprimerCategorie(@PathVariable Long categorieId) {
-		service.supprimerCategorieProduit(categorieId);
-	}
-
-	@RequestMapping(value = "/trouver/{categorieId}", method = RequestMethod.GET)
-	public CategorieProduit trouverCategorie(@PathVariable Long categorieId) {
-		return service.obtenirCategorieProduit(categorieId);
-	}
-
-	@RequestMapping(value = "/lister", method = RequestMethod.GET)
-	public Collection<CategorieProduit> listerCategorie() {
-		return service.listerCategorieProduit();
-	}
-
-	@RequestMapping(value = "/{motCle}", method = RequestMethod.GET)
-	public Collection<CategorieProduit> listerCategorie(@PathVariable String motCle) {
-		return service.listerCategorieProduit(motCle);
-	}
+    
+    @Autowired
+    private IProduitService service;
+    
+    @RequestMapping(value = "/add/{categorieParentId}", method = RequestMethod.POST)
+    public CategorieProduit ajouterCategorie(@RequestBody CategorieProduit categorie,
+            @PathVariable Long categorieParentId) {
+        if (categorieParentId != null) {
+            categorie.setCategorieParent(service.obtenirCategorieProduit(categorieParentId));
+        }
+        service.ajouterCategorieProduit(categorie);
+        return categorie;
+    }
+    
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public CategorieProduit ajouterCategorie(@RequestBody CategorieProduit categorie) {
+        service.ajouterCategorieProduit(categorie);
+        return categorie;
+    }
+    
+    @RequestMapping(value = "/supprimer/{categorieId}", method = RequestMethod.GET)
+    public void supprimerCategorie(@PathVariable Long categorieId) {
+        service.supprimerCategorieProduit(categorieId);
+    }
+    
+    @RequestMapping(value = "/trouver/{categorieId}", method = RequestMethod.GET)
+    public CategorieProduit trouverCategorie(@PathVariable Long categorieId) {
+        return service.obtenirCategorieProduit(categorieId);
+    }
+    
+    @RequestMapping(value = "/lister", method = RequestMethod.GET)
+    public Collection<CategorieProduit> listerCategorie() {
+        return service.listerCategorieProduit();
+    }
+    
+    @RequestMapping(value = "/{motCle}", method = RequestMethod.GET)
+    public Collection<CategorieProduit> listerCategorie(@PathVariable String motCle) {
+        return service.listerCategorieProduit(motCle);
+    }
 }

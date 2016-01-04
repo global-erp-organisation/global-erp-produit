@@ -1,20 +1,51 @@
 <!-- MAIN CONTENT -->
 <div id="content" ng-controller="productCtrl">
-
 	<div class="row">
 		<big-breadcrumbs
-			items="['{{getWord('product')}}', 'Product management']"
-			class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+		items="['Product', 'Product management']"
+		class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
 	</div>
 	<!-- widget grid -->
 	<section id="widget-grid" widget-grid>
-		<table border="2">
-			<tr >
-			 <td>Code categorie</td><td></td>
-			 <td>Description</td><td></td>
-			 <td>Portee</td><td></td>
-			</tr>
-		</table>
+		<div class="row">
+			<article class="col-sm-12">
+
+				<div jarvis-widget id="standard-datatable-widget" data-widget-color="darken" data-widget-editbutton="false">
+					<header>
+						<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+						<h2>Standard Data Tables </h2>
+					</header>
+					<div>
+						<div class="widget-body no-padding">
+							<table datatable-basic class="table table-striped table-bordered table-hover" width="100%">
+								<thead>
+									<tr>
+										<th data-hide="phone">ID</th>
+										<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
+										<th data-hide="phone"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i> Phone</th>
+										<th>Company</th>
+										<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Zip</th>
+										<th data-hide="phone,tablet">City</th>
+										<th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i> Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat ="p in produits">
+										<td>{{p.categorieProduitId}}</td>
+										<td>{{p.codeCategorieProduit}}</td>
+										<td>{{p.descriptionProduit}}</td>
+										<td>{{p.portee}}</td>
+										<td>35728</td>
+										<td>Fogo</td>
+										<td>03/04/14</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
 	</section>
 	<!-- end widget grid -->
 </div>

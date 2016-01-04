@@ -78,5 +78,13 @@
     "My Profile": "Mon profil",
     "Page Header": "En-tête de page",
     "Subtitle": "Sous-titre",
-	"product":"Gestion des produits"
+	"product management":"Gestion des produits",
+	"product":"Produits",
+	"product category":"Categorie de produits",
+	"add":"Ajouter",
+	"update":"Modifier",
+	"remove":"Supprimer",
+	"search":"Rechercher",
+	"keyword":"Mot cle",
+	"bmq":"Borderau des mouvements quotidiens"
 }
