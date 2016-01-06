@@ -86,5 +86,6 @@
 	"remove":"Supprimer",
 	"search":"Rechercher",
 	"keyword":"Mot cle",
-	"bmq":"Borderau des mouvements quotidiens"
+	"bmq":"Borderau des mouvements quotidiens",
+    "description":"Description"
 }
