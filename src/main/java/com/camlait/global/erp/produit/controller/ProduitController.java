@@ -1,5 +1,9 @@
 package com.camlait.global.erp.produit.controller;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.camlait.global.erp.domain.produit.CategorieProduit;
 import com.camlait.global.erp.domain.produit.Produit;
 
 @RestController
@@ -31,7 +36,7 @@ public class ProduitController {
 	}
 
 	@RequestMapping(value = "/trouver/{produitId}", method = RequestMethod.GET)
-	public Produit trouverCategorie(@PathVariable Long produitId) {
+	public Produit trouverProduit(@PathVariable Long produitId) { 
 		return service.obtenirProduit(produitId);
 	}
 
@@ -39,4 +44,12 @@ public class ProduitController {
 	public Page<Produit> listerProduit(@PathVariable int page, @PathVariable int limit) {
 		return service.listerProduit(new PageRequest(page, limit));
 	}
+	
+	@RequestMapping(value = "/lister/{categorieId}")
+	public CategorieProduit listerProduit(@PathVariable Long categorieId) {
+		CategorieProduit c = service.obtenirCategorieProduit(categorieId);
+		c.setProduits(service.listerProduit(c));
+		return c;
+	}
+
 }

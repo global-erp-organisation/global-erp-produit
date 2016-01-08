@@ -31,13 +31,18 @@ public class GlobalErpProduitApplication {
 	@PostConstruct
     public void test() {
         
- 	    produitService.listerCategorieProduit().stream().forEach(c->{
+ 	    /*produitService.listerCategorieProduit().stream().forEach(c->{
  	        System.out.println(c);
  	        Collection<Produit> p = produitService.obtenirCategorieProduit(c.getCategorieProduitId()).getProduits();
  	        if(!p.isEmpty())
  	            p.stream().forEach(r->{
  	                System.out.println("---"+r);
  	            });
- 	    });
+ 	    });*/
+		
+		produitService.listerProduit(produitService.obtenirCategorieProduit(1L)).stream().forEach(p->{
+			System.out.println(p);
+		});
+		
       }
 }
