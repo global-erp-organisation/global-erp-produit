@@ -17,49 +17,55 @@ import com.camlait.global.erp.service.partenaire.IPartenaireService;
 import com.camlait.global.erp.service.partenaire.PartenaireService;
 import com.camlait.global.erp.service.produit.IProduitService;
 import com.camlait.global.erp.service.produit.ProduitService;
+import com.camlait.global.erp.service.produit.ProduitServiceDelegate;
 import com.camlait.global.erp.service.util.IUtilService;
 import com.camlait.global.erp.service.util.UtilService;
 
 @Configuration
 public class ProduitConfiguration {
-
-	@Bean
-	public IProduitService produitService() {
-		return new ProduitService();
-	}
-
-	@Bean
-	public IBmqService bmqService() {
-		return new BmqService();
-	}
-
-	@Bean
-	public IPartenaireService partenaireService() {
-		return new PartenaireService();
-	}
-
-	@Bean
-	public IInventaireService inventaireService() {
-		return new InventaireService();
-	}
-
-	@Bean
-	public IDocumentService documentService() {
-		return new DocumentService();
-	}
-
-	@Bean
-	public IUtilService utilService() {
-		return new UtilService();
-	}
-
-	@Bean
-	public ICaisseService caisseService() {
-		return new CaisseService();
-	}
-
-	@Bean
-	public ILocalisationService localService() {
-		return new LocalisationService();
-	}
+    
+    @Bean
+    public IProduitService produitService() {
+        return new ProduitService();
+    }
+    
+    @Bean
+    public IBmqService bmqService() {
+        return new BmqService();
+    }
+    
+    @Bean
+    public IPartenaireService partenaireService() {
+        return new PartenaireService();
+    }
+    
+    @Bean
+    public IInventaireService inventaireService() {
+        return new InventaireService();
+    }
+    
+    @Bean
+    public IDocumentService documentService() {
+        return new DocumentService();
+    }
+    
+    @Bean
+    public IUtilService utilService() {
+        return new UtilService();
+    }
+    
+    @Bean
+    public ICaisseService caisseService() {
+        return new CaisseService();
+    }
+    
+    @Bean
+    public ILocalisationService localService() {
+        return new LocalisationService();
+    }
+    
+    @Bean
+    public ProduitServiceDelegate produitServiceDelegate() {
+        return new ProduitServiceDelegate();
+    }
 }
