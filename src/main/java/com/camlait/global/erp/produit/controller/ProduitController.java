@@ -1,4 +1,7 @@
+
 package com.camlait.global.erp.produit.controller;
+
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,5 +46,10 @@ public class ProduitController {
     @RequestMapping(value = "/lister/{page}/{limit}")
     public Page<ProduitModel> listerProduit(@PathVariable int page, @PathVariable int limit) {
         return produitServiceDelagate.listerProduit(new PageRequest(page, limit));
+    }
+    
+    @RequestMapping(value = "/lister/{categorieId}")
+    public Collection<ProduitModel> listerProduit(@PathVariable Long categorieId) {
+        return produitServiceDelagate.listerProduit(service.obtenirCategorieProduit(categorieId));
     }
 }
