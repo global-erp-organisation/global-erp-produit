@@ -11,12 +11,12 @@ angular.module('app.product', [
             url: '/product',
             views: {
                 "content@app": {
-                    controller: 'productCtrl',
-                    templateUrl: 'app/product/product.tpl.html'
+                    controller: 'DashboardCtrl',
+                    templateUrl: 'app/product/product.ptl.html'
                 }
             },
             data:{
-                title: 'product'
+                title: 'Product management'
             },
             resolve: {
                 scripts: function(lazyScript){

@@ -77,15 +77,5 @@
     "Maps": "Carte géographique",
     "My Profile": "Mon profil",
     "Page Header": "En-tête de page",
-    "Subtitle": "Sous-titre",
-	"product management":"Gestion des produits",
-	"product":"Produits",
-	"product category":"Categorie de produits",
-	"add":"Ajouter",
-	"update":"Modifier",
-	"remove":"Supprimer",
-	"search":"Rechercher",
-	"keyword":"Mot cle",
-	"bmq":"Borderau des mouvements quotidiens",
-    "description":"Description"
+    "Subtitle": "Sous-titre"
 }
