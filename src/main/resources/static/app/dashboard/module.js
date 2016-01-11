@@ -11,8 +11,8 @@ angular.module('app.dashboard', [
             url: '/dashboard',
             views: {
                 "content@app": {
-                    controller: 'DashboardCtrl',
-                    templateUrl: 'app/dashboard/dashboard.html'
+                    controller: 'produitCtrl',
+                    templateUrl: 'app/dashboard/produit.tpl.html'
                 }
             },
             data:{

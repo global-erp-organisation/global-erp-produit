@@ -24,7 +24,6 @@ angular.module('app', [
     'app.layout',
     'app.chat',
     'app.dashboard',
-    'app.product',
     'app.calendar',
     'app.inbox',
     'app.graphs',
