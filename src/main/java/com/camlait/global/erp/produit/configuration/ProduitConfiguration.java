@@ -3,7 +3,10 @@ package com.camlait.global.erp.produit.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.camlait.global.erp.service.auth.AuthentificationService;
+import com.camlait.global.erp.service.auth.IAuthentificationService;
 import com.camlait.global.erp.service.bmq.BmqService;
+import com.camlait.global.erp.service.bmq.BmqServiceDelegate;
 import com.camlait.global.erp.service.bmq.IBmqService;
 import com.camlait.global.erp.service.caisse.CaisseService;
 import com.camlait.global.erp.service.caisse.ICaisseService;
@@ -26,13 +29,18 @@ import com.camlait.global.erp.service.util.UtilService;
 public class ProduitConfiguration {
 
 	@Bean
-	public IProduitService produitService() {
-		return new ProduitService();
+	public IAuthentificationService authentificationService() {
+		return new AuthentificationService();
 	}
 
 	@Bean
 	public IBmqService bmqService() {
 		return new BmqService();
+	}
+
+	@Bean
+	public IProduitService produitService() {
+		return new ProduitService();
 	}
 
 	@Bean
@@ -74,4 +82,10 @@ public class ProduitConfiguration {
 	public ProduitServiceDelegate produitServiceDelegate() {
 		return new ProduitServiceDelegate();
 	}
+
+	@Bean
+	public BmqServiceDelegate bmqServiceDelegate() {
+		return new BmqServiceDelegate();
+	}
+
 }

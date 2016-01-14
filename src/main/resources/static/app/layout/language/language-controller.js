@@ -10,7 +10,7 @@ angular.module('app').controller("LanguagesCtrl",  function LanguagesCtrl($scope
 
         $rootScope.languages = data;
 
-        Language.getLang(data[0].key,function(data){
+        Language.getLang(data[0].codeLangue,function(data){
 
             $rootScope.lang = data;
         });
@@ -20,7 +20,7 @@ angular.module('app').controller("LanguagesCtrl",  function LanguagesCtrl($scope
     $scope.selectLanguage = function(language){
         $rootScope.currentLanguage = language;
         
-        Language.getLang(language.key,function(data){
+        Language.getLang(language.codeLangue,function(data){
 
             $rootScope.lang = data;
             

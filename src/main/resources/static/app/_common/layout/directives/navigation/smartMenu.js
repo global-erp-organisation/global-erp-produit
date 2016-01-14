@@ -42,7 +42,7 @@ angular.module('SmartAdmin.Layout').directive('smartMenu', function ($state, $ro
         link: function (scope, element, attrs) {
             var $body = $('body');
 
-            var $collapsible = element.find('li[data-menu-collapse]');
+            var $collapsible = element.find('li[data-menu-collapse="true"]');
 
             var bindEvents = function(){
                 $collapsible.each(function (idx, li) {
