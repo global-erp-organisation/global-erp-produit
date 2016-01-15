@@ -2,10 +2,11 @@
 
 angular.module('app.appViews').controller('ProjectsDemoCtrl', function ($scope, projects) {
 
-    $scope.projects = projects.data;
+    //$scope.projects = projects.data;
+	$scope.projects = projects;
 
     $scope.tableOptions =  {
-        "data": projects.data.data,
+        "data": projects.data,
 //            "bDestroy": true,
         "iDisplayLength": 15,
         "columns": [
@@ -15,14 +16,14 @@ angular.module('app.appViews').controller('ProjectsDemoCtrl', function ($scope, 
                 "data":           null,
                 "defaultContent": ''
             },
-            { "data": "name" },
-            { "data": "est" },
-            { "data": "contacts" },
-            { "data": "status" },
-            { "data": "target-actual" },
-            { "data": "starts" },
-            { "data": "ends" },
-            { "data": "tracker" }
+            { "data": "produitId" },
+            { "data": "codeProduit" },
+            { "data": "descriptionProduit" },
+            { "data": "prixUnitaireProduit" },
+            { "data": "prixUnitaireMarge" },
+            { "data": "categorieId" },
+            { "data": "produitTaxable" },
+            { "data": "suiviEnStock" }
         ],
         "order": [[1, 'asc']]
     }

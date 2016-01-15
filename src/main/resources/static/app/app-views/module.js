@@ -23,7 +23,8 @@ angular.module('app.appViews', ['ui.router'])
                     controller: 'ProjectsDemoCtrl',
                     resolve: {
                         projects: function($http, APP_CONFIG){
-                            return $http.get(APP_CONFIG.apiRootUrl + '/project-list.json')
+                            //return $http.get(APP_CONFIG.apiRootUrl + '/project-list.json')
+							return $http.get('/produit/lister/1')
                         }
                     }
                 }
