@@ -28,11 +28,8 @@ public class GlobalErpProduitApplication {
 
 	@PostConstruct
 	public void test() throws Exception {
-		service.ajouterLangue(new Langue("fr", "Francais", "France"));
-		service.ajouterLangue(new Langue("us", "English (US)", "United state"));
-		service.ajouterLangue(new Langue("de", "German", "Germany"));
-		
-		
-
+		//service.ajouterLangue(new Langue("fr", "Francais", "France"));
+		//service.ajouterLangue(new Langue("us", "English (US)", "United state"));
+		//service.ajouterLangue(new Langue("de", "German", "Germany"));
 	}
 }
