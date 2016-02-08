@@ -13,8 +13,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.camlait.global.erp.domain.auth.Ressource;
 import com.camlait.global.erp.domain.config.GlobalAppConstants;
+import com.camlait.global.erp.domain.util.conversion.ChiffreEnLettre;
+import com.camlait.global.erp.domain.util.conversion.ChiffreEnLettreFrancais;
+import com.camlait.global.erp.service.auth.AuthentificationServiceDelegate;
 import com.camlait.global.erp.service.auth.IAuthentificationService;
-import com.camlait.global.erp.service.produit.IProduitService;
 
 @SpringBootApplication
 @EnableTransactionManagement
@@ -23,17 +25,15 @@ import com.camlait.global.erp.service.produit.IProduitService;
 public class GlobalErpProduitApplication {
 
 	@Autowired
-	private IAuthentificationService service;
+	private AuthentificationServiceDelegate service;
 
-	@Autowired
-	private IProduitService sp;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GlobalErpProduitApplication.class, args);
 	}
 
 	@PostConstruct
-	public void test() {
+	public void test() throws Exception {
 		/*
 		 * service.ajouterLangue(new Langue("fr", "Francais", "France"));
 		 * service.ajouterLangue(new Langue("us", "English (US)", "United state"
@@ -47,138 +47,144 @@ public class GlobalErpProduitApplication {
 		 */
 
 		/*Ressource tb = new Ressource();
-		tb.setClasseIcon("fa fa-lg fa-fw fa-home ");
-		tb.setDescriptionRessource("Dashboard");
-		tb.setAppLocalisation("app.dashboard");
+		tb.setIcon("home");
+		tb.setTitle("Dashboard");
+		tb.setSref("app.dashboard");
 		service.ajouterRessource(tb);
 
 		Ressource gp = new Ressource();
-		gp.setClasseIcon("fa fa-lg fa-fw fa-inbox");
-		gp.setAppLocalisation("app.inbox.folder");
-		gp.setDescriptionRessource("Inbox");
+		gp.setIcon("inbox");
+		gp.setSref("app.inbox.folder");
+		gp.setTitle("Inbox");
 		service.ajouterRessource(gp);
 		
 		Ressource p = new Ressource();
-		p.setClasseIcon("fa fa-lg fa-fw fa-bar-chart-o");
-		p.setDescriptionRessource("Graphs");
+		p.setIcon("bar-chart-o");
+		p.setTitle("Graphs");
 		service.ajouterRessource(p);
 		
 		Ressource pa = new Ressource();
 		pa.setRessourceParent(p);
-		pa.setAppLocalisation("app.graphs.flot");
-		pa.setDescriptionRessource("Flot Chart");
+		pa.setSref("app.graphs.flot");
+		pa.setTitle("Flot Chart");
 		service.ajouterRessource(pa);
 		
 		Ressource pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.graphs.inline");
-		pm.setDescriptionRessource("Inline Charts");
+		pm.setSref("app.graphs.inline");
+		pm.setTitle("Inline Charts");
 		service.ajouterRessource(pm);
 
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.graphs.morris");
-		pm.setDescriptionRessource("Morris Charts");
+		pm.setSref("app.graphs.morris");
+		pm.setTitle("Morris Charts");
 		service.ajouterRessource(pm);
 		
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.graphs.dygraphs");
-		pm.setDescriptionRessource("Dygraphs");
+		pm.setSref("app.graphs.dygraphs");
+		pm.setTitle("Dygraphs");
 		service.ajouterRessource(pm);
 
 		p = new Ressource();
-		p.setClasseIcon("fa fa-lg fa-fw fa-table");
-		p.setDescriptionRessource("Tables");
+		p.setIcon("table");
+		p.setSref("app.tables.datatables");
+		p.setTitle("Normal Tables");
 		service.ajouterRessource(p);
 		
 		pa = new Ressource();
 		pa.setRessourceParent(p);
-		pa.setAppLocalisation("app.tables.normal");
-		pa.setDescriptionRessource("Normal Tables");
+		pa.setSref("app.tables.normal");
+		pa.setTitle("Normal Tables");
 		service.ajouterRessource(pa);
 		
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.tables.datatables");
-		pm.setDescriptionRessource("Data Tables");
+		pm.setSref("app.tables.datatables");
+		pm.setTitle("Data Tables");
 		service.ajouterRessource(pm);
 
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.tables.jqgrid");
-		pm.setDescriptionRessource("Jquery Grid");
+		pm.setSref("app.tables.jqgrid");
+		pm.setTitle("Jquery Grid");
 		service.ajouterRessource(pm);
 		
 		
 		p = new Ressource();
-		p.setClasseIcon("fa fa-lg fa-fw fa-pencil-square-o");
-		p.setDescriptionRessource("Forms");
+		p.setIcon("pencil-square-o");
+		p.setSref("app.form.elements");
+		p.setTitle("Form Elements");
 		service.ajouterRessource(p);
 		
 		pa = new Ressource();
 		pa.setRessourceParent(p);
-		pa.setAppLocalisation("app.form.elements");
-		pa.setDescriptionRessource("Smart Form Elements");
+		pa.setSref("app.form.elements");
+		pa.setTitle("Smart Form Elements");
 		service.ajouterRessource(pa);
 		
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.form.layouts");
-		pm.setDescriptionRessource("Smart Form Layouts");
+		pm.setSref("app.form.layouts");
+		pm.setTitle("Smart Form Layouts");
 		service.ajouterRessource(pm);
 
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.form.validation");
-		pm.setDescriptionRessource("Smart Form Validation");
+		pm.setSref("app.form.validation");
+		pm.setTitle("Smart Form Validation");
 		service.ajouterRessource(pm);
 
 		pa = new Ressource();
 		pa.setRessourceParent(p);
-		pa.setAppLocalisation("app.form.bootstrapForms");
-		pa.setDescriptionRessource("Bootstrap Form Elements");
+		pa.setSref("app.form.bootstrapForms");
+		pa.setTitle("Bootstrap Form Elements");
 		service.ajouterRessource(pa);
 		
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.form.bootstrapValidation");
-		pm.setDescriptionRessource("Bootstrap Form Validation");
+		pm.setSref("app.form.bootstrapValidation");
+		pm.setTitle("Bootstrap Form Validation");
 		service.ajouterRessource(pm);
 
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.form.plugins");
-		pm.setDescriptionRessource("Form Plugins");
+		pm.setSref("app.form.plugins");
+		pm.setTitle("Form Plugins");
 		service.ajouterRessource(pm);
 
 	
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.form.wizards");
-		pm.setDescriptionRessource("Wizards");
+		pm.setSref("app.form.wizards");
+		pm.setTitle("Wizards");
 		service.ajouterRessource(pm);
 
 		pa = new Ressource();
 		pa.setRessourceParent(p);
-		pa.setAppLocalisation("app.form.editors");
-		pa.setDescriptionRessource("Bootstrap Editors");
+		pa.setSref("app.form.editors");
+		pa.setTitle("Bootstrap Editors");
 		service.ajouterRessource(pa);
 		
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.form.dropzone");
-		pm.setDescriptionRessource("Dropzone");
+		pm.setSref("app.form.dropzone");
+		pm.setTitle("Dropzone");
 		service.ajouterRessource(pm);
 
 		pm = new Ressource();
 		pm.setRessourceParent(p);
-		pm.setAppLocalisation("app.form.imageEditor");
-		pm.setDescriptionRessource("Image Cropping");
+		pm.setSref("app.form.imageEditor");
+		pm.setTitle("Image Cropping");
 		service.ajouterRessource(pm);*/
 
+		/*service.listerRessource().stream().forEach(r->{
+			System.out.println(r.getTitle());
+		});*/
 		
-		Collection<Ressource> rs = service.listerRessource();
-		System.out.println(service.genererMenu(rs));
+		service.menuItem().entrySet().stream().forEach(e->{
+			System.out.println(e.getValue()+":"+e.getValue());
+		});
 	}
 }

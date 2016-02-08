@@ -1,5 +1,8 @@
 package com.camlait.global.erp.produit.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +21,11 @@ public class HomeController {
 	public String genererMenu(@PathVariable String codeUtilisateur) {
 		return service.genererMenu(codeUtilisateur);
 	}
-	
-	@RequestMapping(value = "/menu", method = RequestMethod.GET)
-	public String genererMenu() {
-		return service.genererMenu();
-	}
 
+	@RequestMapping(value = "/menu", method = RequestMethod.GET)
+	public Map<String, String> genererMenu() {
+		Map<String, String> m = new HashMap<String, String>();
+		m.put("data", service.genererMenu());
+		return m;
+	}
 }

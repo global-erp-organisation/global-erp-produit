@@ -16,15 +16,11 @@ import com.camlait.global.erp.domain.organisation.Centre;
 import com.camlait.global.erp.domain.organisation.Localisation;
 import com.camlait.global.erp.domain.organisation.Region;
 import com.camlait.global.erp.domain.organisation.Secteur;
-import com.camlait.global.erp.service.organisation.ILocalisationService;
 import com.camlait.global.erp.service.organisation.LocalisationServiceDelegate;
 
 @RequestMapping(value = "/organisation")
 @RestController
 public class LocalisationController {
-
-	@Autowired
-	private ILocalisationService localisationService;
 
 	@Autowired
 	private LocalisationServiceDelegate service;

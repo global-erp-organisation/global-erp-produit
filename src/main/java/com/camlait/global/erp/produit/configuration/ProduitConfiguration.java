@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.camlait.global.erp.service.auth.AuthentificationService;
+import com.camlait.global.erp.service.auth.AuthentificationServiceDelegate;
 import com.camlait.global.erp.service.auth.IAuthentificationService;
 import com.camlait.global.erp.service.bmq.BmqService;
 import com.camlait.global.erp.service.bmq.BmqServiceDelegate;
@@ -29,8 +30,8 @@ import com.camlait.global.erp.service.util.UtilService;
 public class ProduitConfiguration {
 
 	@Bean
-	public IAuthentificationService authentificationService() {
-		return new AuthentificationService();
+	public AuthentificationServiceDelegate authentificationService() {
+		return new AuthentificationServiceDelegate();
 	}
 
 	@Bean
@@ -88,4 +89,8 @@ public class ProduitConfiguration {
 		return new BmqServiceDelegate();
 	}
 
+	@Bean
+	public IAuthentificationService authentificationServie() {
+		return new AuthentificationService();
+	}
 }
