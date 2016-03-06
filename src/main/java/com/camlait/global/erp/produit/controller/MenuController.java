@@ -17,6 +17,6 @@ public class MenuController {
 
 	@RequestMapping(value = "/menuItem", method = RequestMethod.GET)
 	public Map<String, Object> getMenu() {
-		return null;
+		return service.menuItem();
 	}
 }

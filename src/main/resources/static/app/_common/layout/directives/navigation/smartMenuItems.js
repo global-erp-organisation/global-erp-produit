@@ -62,7 +62,7 @@
                 element.replaceWith(_element);                
             })*/
 
-            $http.get('/menuItem').then(function(res){
+            $http.get('/res/1').then(function(res){
                 console.log(res);
                 var ul = $('<ul />', {
                     'smart-menu': ''
